@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
     '@nuxthq/ui',
     '@nuxt/eslint',
+    '@nuxt/image',
   ],
   css: [
     '~/css/reset.scss',
