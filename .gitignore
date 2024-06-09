@@ -16,3 +16,5 @@ logs
 .DS_Store
 .fleet
 .idea
+
+public/uploads/*

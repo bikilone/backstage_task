@@ -3,24 +3,23 @@
 </script>
 
 <template>
-  <div class="wrapper">
-    <div class="wrapper-header">
-      <span class="font-bold">B</span>ack<span class="font-bold">S</span>tage
-    </div>
+	<div class="wrapper">
+		<div class="wrapper-header">
+			<span class="font-bold">B</span>ack<span class="font-bold">S</span>tage
+		</div>
 
-    <NuxtLink to="/task">
-      Task
-    </NuxtLink>
+		<NuxtLink to="/task">
+			Task
+		</NuxtLink>
 
+		<NuxtLink to="/products">
+			Products
+		</NuxtLink>
 
-    <NuxtLink to="/products">
-      Products
-    </NuxtLink>
-
-    <NuxtLink>
-      Create product
-    </NuxtLink>
-  </div>
+		<NuxtLink to="/products/create">
+			Create product
+		</NuxtLink>
+	</div>
 </template>
 
 <style lang="scss" scoped>

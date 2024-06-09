@@ -24,9 +24,11 @@
     "sass": "^1.63.6"
   },
   "dependencies": {
+    "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@prisma/client": "4.16.1",
     "@vuelidate/core": "^2.0.2",
     "@vuelidate/validators": "^2.0.2",
+    "formidable": "^3.5.1",
     "prisma": "^4.16.1"
   }
 }
