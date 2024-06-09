@@ -3,16 +3,25 @@ export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
     '@nuxt/content',
-    '@nuxthq/ui'
+    '@nuxthq/ui',
+    '@nuxt/eslint',
   ],
   css: [
     '~/css/reset.scss',
     '~/css/global.scss',
   ],
-  'components': {
+  components: {
     dirs: [
       { path: './components', pathPrefix: false },
     ],
   },
-  devtools: { enabled: true }
+  devtools: { enabled: true },
+  eslint: {
+    config: {
+      stylistic: {
+        indent: 'tab',
+        semi: true,
+      },
+    },
+  },
 })

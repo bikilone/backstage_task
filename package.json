@@ -12,11 +12,13 @@
   "devDependencies": {
     "@nuxt/content": "^2.7.0",
     "@nuxt/devtools": "latest",
+    "@nuxt/eslint": "^0.3.13",
     "@nuxthq/ui": "^2.4.1",
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@types/node": "^18",
     "@vueuse/core": "^10.2.0",
     "@vueuse/nuxt": "^10.2.0",
+    "eslint": "^9.4.0",
     "nuxt": "^3.5.2",
     "sass": "^1.63.6"
   },
