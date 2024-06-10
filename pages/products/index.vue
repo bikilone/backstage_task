@@ -12,9 +12,15 @@ const preloadImage = computed(() => {
 
 <template>
 	<div class="mx-10 md:mx-30 xl:mx-40">
-		<h1 class="mt-10 lg:mt-20">
-			Products
-		</h1>
+		<div class="flex flex-col items-center mt-10 md:flex-row">
+			<h1 class="inline-block">
+				Products
+			</h1>
+			<NuxtLink
+				to="/products/create"
+				class="btn md:ml-auto mt-10 md:mt-0"
+			>Create new product</NuxtLink>
+		</div>
 		<div
 			v-if="products?.length"
 			class="grid gap-4 md:gap-6  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4  my-10 lg:my-20"

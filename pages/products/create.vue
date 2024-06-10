@@ -125,6 +125,10 @@ const submitForm = async () => {
 				</div>
 			</UForm>
 		</div>
+		<NuxtLink
+			to="/products"
+			class="btn mx-auto mt-10"
+		>Go to products</NuxtLink>
 	</div>
 </template>
 
