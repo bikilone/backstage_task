@@ -50,5 +50,6 @@ export default defineEventHandler(async (event) => {
 
 	const product = await prisma.product.create({ data });
 
-	return product;
+	setResponseStatus(event, 200);
+	return { product, statusMessage: 'Product has been created' };
 })

@@ -15,13 +15,22 @@ const preloadImage = computed(() => {
 		<h1 class="mt-10 lg:mt-20">
 			Products
 		</h1>
-		<div class="grid gap-4 md:gap-6  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-10 lg:my-20">
+		<div
+			v-if="products?.length"
+			class="grid gap-4 md:gap-6  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4  my-10 lg:my-20"
+		>
 			<Product
 				v-for="product in products"
 				:key="product.id"
 				:preload-image="preloadImage(product)"
 				:product="product"
 			/>
+		</div>
+		<div
+			v-else
+			class="text-center text-lg mt-20"
+		>
+			No products found
 		</div>
 	</div>
 </template>

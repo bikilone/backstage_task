@@ -1,26 +1,20 @@
 <script setup lang="ts">
-// import { object, string, type InferType } from 'yup'
 import { useVuelidate } from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
-import type { FormError, FormErrorEvent } from '#ui/types';
 
-// const schema = object({
-// 	title: string().required(),
-// 	description: string().required(),
-// 	price: string().required(),
-// 	image: string().required(),
-// })
-
-// type Schema = InferType<typeof schema>
-
-const product = ref({
+const toast = useToast();
+const product = reactive({
 	title: '',
 	description: '',
-	price: 0,
+	price: '',
 	image: '',
 });
 
-const validate = (state: typeof product.value): FormError[] => {
+const isFormDisabled = computed(() => {
+	return !product.title || !product.description || !product.price || !product.image;
+});
+
+const validate = (state: typeof product) => {
 	const errors = [];
 
 	if (!state.title) errors.push({ path: 'title', message: 'Required' });
@@ -41,8 +35,6 @@ const rules = {
 const v$ = useVuelidate(rules, product);
 
 const submitForm = async () => {
-	await v$.value.$touch();
-
 	const isFormCorrect = await v$.value.$validate();
 
 	if (!isFormCorrect) {
@@ -50,22 +42,28 @@ const submitForm = async () => {
 	}
 
 	const formData = new FormData();
-	formData.append('title', product.value.title);
-	formData.append('description', product.value.description);
-	formData.append('price', product.value.price + '');
-	if (product.value.image && product.value.image.length > 0) {
-		formData.append('image', product.value.image[0]);
+	formData.append('title', product.title);
+	formData.append('description', product.description);
+	formData.append('price', product.price + '');
+	if (product.image && product.image.length > 0) {
+		formData.append('image', product.image[0]);
 	}
-
-	$fetch('/api/products', {
-		method: 'POST',
-		body: formData,
-	});
-}
-const onError = (event: FormErrorEvent) => {
-	const element = document.getElementById(event.errors[0].id);
-	element?.focus();
-	element?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+	try {
+		const response = await $fetch('/api/products', {
+			method: 'POST',
+			body: formData,
+		});
+		toast.add({
+			title: response.statusMessage,
+			color: 'green',
+		});
+	}
+	catch (e) {
+		toast.add({
+			title: e?.statusMessage,
+			color: 'red',
+		})
+	}
 }
 </script>
 
@@ -78,10 +76,9 @@ const onError = (event: FormErrorEvent) => {
 			:state="product"
 			:validate="validate"
 			@submit.prevent="submitForm"
-			@error="onError"
 		>
 			<UFormGroup
-				label="Title"
+				label="Title*"
 				name="title"
 			>
 				<UInput
@@ -90,7 +87,7 @@ const onError = (event: FormErrorEvent) => {
 				/>
 			</UFormGroup>
 			<UFormGroup
-				label="Description"
+				label="Description*"
 				name="description"
 			>
 				<UTextarea
@@ -100,7 +97,7 @@ const onError = (event: FormErrorEvent) => {
 			</UFormGroup>
 
 			<UFormGroup
-				label="Price"
+				label="Price*"
 				name="price"
 			>
 				<UInput
@@ -111,13 +108,14 @@ const onError = (event: FormErrorEvent) => {
 			</UFormGroup>
 
 			<UFormGroup
-				label="Image"
+				label="Image*"
 				name="image"
 			>
 				<FileInput v-model="product.image" />
 			</UFormGroup>
 			<div class="mt-6">
 				<UButton
+					:disabled="isFormDisabled"
 					type="submit"
 					class="ui-button"
 				>
