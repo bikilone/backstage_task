@@ -68,61 +68,63 @@ const submitForm = async () => {
 </script>
 
 <template>
-	<div class="max-w-lg mt-20  mx-auto p-10 bg-slate-500">
-		<h1 class="text-2xl font-bold mb-6">
-			Add New Product
-		</h1>
-		<UForm
-			:state="product"
-			:validate="validate"
-			@submit.prevent="submitForm"
-		>
-			<UFormGroup
-				label="Title*"
-				name="title"
+	<div class="w-full h-full flex flex-col justify-center">
+		<div class="w-3/4 md:w-1/2 xl:w-1/4 mx-auto p-10 bg-slate-500 ">
+			<h1 class="text-2xl font-bold mb-6">
+				Add New Product
+			</h1>
+			<UForm
+				:state="product"
+				:validate="validate"
+				@submit.prevent="submitForm"
 			>
-				<UInput
-					v-model="product.title"
-					placeholder="Enter product title"
-				/>
-			</UFormGroup>
-			<UFormGroup
-				label="Description*"
-				name="description"
-			>
-				<UTextarea
-					v-model="product.description"
-					placeholder="Enter product description"
-				/>
-			</UFormGroup>
-
-			<UFormGroup
-				label="Price*"
-				name="price"
-			>
-				<UInput
-					v-model="product.price"
-					type="number"
-					placeholder="Enter product price"
-				/>
-			</UFormGroup>
-
-			<UFormGroup
-				label="Image*"
-				name="image"
-			>
-				<FileInput v-model="product.image" />
-			</UFormGroup>
-			<div class="mt-6">
-				<UButton
-					:disabled="isFormDisabled"
-					type="submit"
-					class="ui-button"
+				<UFormGroup
+					label="Title*"
+					name="title"
 				>
-					Add Product
-				</UButton>
-			</div>
-		</UForm>
+					<UInput
+						v-model="product.title"
+						placeholder="Enter product title"
+					/>
+				</UFormGroup>
+				<UFormGroup
+					label="Description*"
+					name="description"
+				>
+					<UTextarea
+						v-model="product.description"
+						placeholder="Enter product description"
+					/>
+				</UFormGroup>
+
+				<UFormGroup
+					label="Price*"
+					name="price"
+				>
+					<UInput
+						v-model="product.price"
+						type="number"
+						placeholder="Enter product price"
+					/>
+				</UFormGroup>
+
+				<UFormGroup
+					label="Image*"
+					name="image"
+				>
+					<FileInput v-model="product.image" />
+				</UFormGroup>
+				<div class="mt-6">
+					<UButton
+						:disabled="isFormDisabled"
+						type="submit"
+						class="ui-button"
+					>
+						Add Product
+					</UButton>
+				</div>
+			</UForm>
+		</div>
 	</div>
 </template>
 
